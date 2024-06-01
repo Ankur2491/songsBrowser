@@ -11,6 +11,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import allSongs from './data/songs.json'
 import Card from 'react-bootstrap/Card';
+import Accordion from 'react-bootstrap/Accordion';
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -21,7 +22,7 @@ function App() {
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container fluid>
-          <Navbar.Brand href="/">Songs-Info</Navbar.Brand>
+          <Navbar.Brand href="/">Songs-Browser</Navbar.Brand>
           {/* <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
@@ -57,9 +58,9 @@ function App() {
         {
           results.length > 0 &&
           <Row>
-            
-              {results.map(result => 
-              <Col sm={6}> <Card style={{backgroundColor:'#d4d4d4', width: '100%'}}>
+
+            {results.map(result =>
+              <Col sm={6}> <Card style={{ backgroundColor: '#d4d4d4', width: '100%' }}>
                 <Card.Img variant="bottom" style={{ objectFit: 'none' }} src={result.image} />
                 <Card.Body>
                   <Card.Title>{result.movie}</Card.Title>
@@ -67,23 +68,30 @@ function App() {
                     {result.release_date}
                   </Card.Text>
                 </Card.Body>
-                <Row>
-                {result.songs.map(songRecord =>
-                  <Col xs={12}>
-                  <p><b>Title:</b> {songRecord.song}</p>
-                  <p><b>Singer:</b>{songRecord.singers}</p>
-                  <p><b>Music:</b> {songRecord.music}</p>
-                  <p><b>Lyrics:</b></p>
-                    <ul>
-                    {songRecord.lyrics.map(lyricsName=><li>{lyricsName}</li>)}
-                    </ul>
-                    <hr/>
-                  </Col>
-                )}
-                </Row>
-                </Card>
-                </Col>
-             )}
+                <Accordion>
+                  <Accordion.Item eventKey="0">
+                    <Accordion.Header>View</Accordion.Header>
+                    <Accordion.Body>
+                      <Row>
+                        {result.songs.map(songRecord =>
+                          <Col xs={12}>
+                            <p><b>Title:</b> {songRecord.song}</p>
+                            <p><b>Singer:</b>{songRecord.singers}</p>
+                            <p><b>Music:</b> {songRecord.music}</p>
+                            <p><b>Lyrics:</b></p>
+                            <ul>
+                              {songRecord.lyrics.map(lyricsName => <li>{lyricsName}</li>)}
+                            </ul>
+                            <hr />
+                          </Col>
+                        )}
+                      </Row>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                </Accordion>
+              </Card>
+              </Col>
+            )}
           </Row>
         }
       </Container>
