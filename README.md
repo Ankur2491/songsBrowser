@@ -1,1 +1,1 @@
-# songsBrowser
+# songsInfo
