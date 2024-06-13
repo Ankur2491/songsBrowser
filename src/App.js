@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import allSongs from './data/songs.json'
+import allSongs from './data/updatedSongs.json'
 import Card from 'react-bootstrap/Card';
 import Accordion from 'react-bootstrap/Accordion';
 
